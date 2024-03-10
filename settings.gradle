@@ -1,5 +1,8 @@
 rootProject.name = 'spring-micro-demo'
 
 includeBuild 'eureka-server'
-includeBuild 'eureka-client'
+includeBuild 'bank-service'
+includeBuild 'shop-service'
+includeBuild 'stock-service'
+includeBuild 'auth-service'
 includeBuild 'api-gateway'
