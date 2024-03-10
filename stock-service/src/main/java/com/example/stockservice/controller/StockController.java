@@ -20,13 +20,13 @@ public class StockController {
     private final OrderService orderService;
 
     @GetMapping("/check-product/{id}")
-    public Boolean checkProduct(@PathVariable Long id) {
-        return productService.checkProduct(id);
+    public Optional<Product> getProduct(@PathVariable Long id) {
+        return productService.getProduct(id);
     }
 
     @PostMapping("/reserve-product")
     public Order reserveProduct(@RequestBody Order order) {
-        if (productService.checkProduct(order.getProductId().getId()))
+        if (productService.getProduct(order.getProductId().getId()).isPresent())
             return orderService.reserveProduct(order);
         else{
             throw new ProductNotFoundException("product with id "+ order.getProductId().getId() + " is out of stock");

@@ -1,10 +1,12 @@
 package com.example.stockservice.services.impl;
 
+import com.example.stockservice.entities.Product;
 import com.example.stockservice.repositories.ProductRepository;
 import com.example.stockservice.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -12,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
 
     ProductRepository repository;
     @Override
-    public Boolean checkProduct(Long id) {
-        return repository.existsById(id);
+    public Optional<Product> getProduct(Long id) {
+        return Optional.ofNullable(repository.findById(id).orElse(null));
     }
 }
